@@ -9,4 +9,5 @@
 
 本人 孟祥月  
 博客：<http://blog.csdn.net/mengxiangyue>  
-微博：@孟祥月
+微博：[@孟祥月](http://weibo.com/u/1750643861)  
+Swift技术交流群 QQ群：247617797
