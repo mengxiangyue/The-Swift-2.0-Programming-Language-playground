@@ -50,6 +50,7 @@ var welcome = string1 + string2
 var instruction = "look over"
 instruction += string2
 // 使用append方法添加字符
+//welcome + exclamationMark
 welcome.append(exclamationMark)
 
 //:字符串插值 (String Interpolation)。插值字符串中写在括号中的表达式不能包含非转义双引号 (") 和反斜杠 (\)，并且不能包含回车或换行符。
@@ -91,7 +92,7 @@ let greeting = "Guten Tag"
 greeting[greeting.startIndex]
 greeting[greeting.endIndex.predecessor()]
 greeting[greeting.startIndex.successor()]
-let index = advance(greeting.startIndex, 7)
+let index = greeting.startIndex.advancedBy(7)
 greeting.startIndex
 greeting.endIndex // 字符数+1
 //greeting[greeting.endIndex] // error
@@ -105,12 +106,13 @@ greeting.endIndex // 字符数+1
 welcome = "hello"
 welcome.insert("!", atIndex: welcome.endIndex)
 
-welcome.splice(" there".characters, atIndex: welcome.endIndex.predecessor())
+welcome.insertContentsOf(" there".characters, at: welcome.endIndex.predecessor())
 
 welcome.removeAtIndex(welcome.endIndex.predecessor())
+welcome
 
 // range
-let range = advance(welcome.endIndex, -6)..<welcome.endIndex
+let range = welcome.endIndex.advancedBy(-6)..<welcome.endIndex
 welcome.removeRange(range)
 
 //:字符串比较
@@ -142,19 +144,19 @@ quotation.hasSuffix(".")
 let dogString = "Dog!!🐶"
 var image = UIImage(named: "String.utf8")
 for codeUnit in dogString.utf8 {
-    print("\(codeUnit) ", appendNewline: false)
+    print("\(codeUnit) ", terminator: "")
 }
 print("")
 
 image = UIImage(named: "String.utf16")
 for codeUnit in dogString.utf16 {
-    print("\(codeUnit) ", appendNewline: false)
+    print("\(codeUnit) ", terminator: "")
 }
 print("")
 // Unicode Scalar Representation
 image = UIImage(named: "String.utf32")
 for scalar in dogString.unicodeScalars {
-    print("\(scalar.value) ", appendNewline: false)
+    print("\(scalar.value) ", terminator: "")
 }
 
 
