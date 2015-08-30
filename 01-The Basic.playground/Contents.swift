@@ -30,7 +30,7 @@ let `if` = "如果"
 
 // 打印 print
 print(welcomeMessage)
-print(welcomeMessage, appendNewline:true)
+print(welcomeMessage, terminator: "\n")
 
 print("this is a test")
 // 字符串插值
@@ -169,16 +169,15 @@ func canThrowanError() throws {
 
 enum MyError: ErrorType {
     case error1
-    case error2
+    case error2(description: String)
 }
 do {
     try canThrowanError()
 } catch MyError.error1 {
     // an error was thrown
-} catch MyError.error2 {
+} catch MyError.error2(let description) {
 
 }
-
 
 //: 断言
 let age = -3
