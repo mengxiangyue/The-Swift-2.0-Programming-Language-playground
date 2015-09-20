@@ -64,9 +64,10 @@ let dollarSign = "\u{24}"
 let blackHeart = "\u{2665}"
 let sparklingHeart = "\u{1F496}"
 
-// Extended Grapheme Clusters 将一个或者多个Unicode标量组合成一个易读的字符
+// Extended Grapheme(字母) Clusters(群集) 将一个或者多个Unicode标量组合成一个易读的字符
 let eAcute: Character = "\u{E9}"
 let combinedEAcute: Character = "\u{65}\u{301}"
+eAcute == combinedEAcute
 
 // 韩语中一个音节 可以拆分
 let precomposed: Character = "\u{D55C}"
@@ -79,16 +80,20 @@ let regionalIndicatorForUS: Character = "\u{1F1FA}\u{1F1F8}"
 
 //:计算字符数量（Counting Characters） 如果需要计算占用的内存 还需要迭代计算
 let unusualMenagerie = "Koala 🐨, Snail 🐌, Penguin 🐧, Dromedary 🐪"
+unusualMenagerie.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)
 print("unusualMenagerie has \(unusualMenagerie.characters.count) characters")
 
 var word = "cafe"
+word.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)
 print("the number of characters in \(word) is \(word.characters.count)")
 word += "\u{301}"
+word.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)
 print("the number of characters in \(word) is \(word.characters.count)")
 
 //:访问、修改字符串
 // String Indexes String.Index 字符串中对应位置的Character,由于不同字符占用的存储空间不同，所以为了获取每个字符正确的位置，必须从开始位置迭代Unicode标量获取位置
 let greeting = "Guten Tag"
+greeting.characters.count
 greeting[greeting.startIndex]
 greeting[greeting.endIndex.predecessor()]
 greeting[greeting.startIndex.successor()]
@@ -97,10 +102,13 @@ greeting.startIndex
 greeting.endIndex // 字符数+1
 //greeting[greeting.endIndex] // error
 
-//indices(_:) 书中有这个方法 但是XCode中没有
-//for index in indices(greeting) {
-//    print("\(greeting[index])")
-//}
+// Return the range of valid index values.
+for index in greeting.characters.indices {
+    print("\(greeting[index]) ", terminator: "")
+}
+print("", terminator: "\n")
+// prints "G u t e n   T a g !"
+
 
 // 插入、删除
 welcome = "hello"
@@ -129,8 +137,8 @@ if eAcuteQuestion == combinedEAcuteQustion {
     print("These two strings are considered equal")
 }
 
-let latinCapitalLetterA: Character = "\u{41}"
-let cyrillicCapitalLetterA: Character = "\u{0410}"
+let latinCapitalLetterA: Character = "\u{41}" // 英语
+let cyrillicCapitalLetterA: Character = "\u{0410}" // 俄语
 if latinCapitalLetterA != cyrillicCapitalLetterA {
     print("These two strings are not equal")
 }
@@ -141,7 +149,7 @@ quotation.hasPrefix("We")
 quotation.hasSuffix(".")
 
 //:Unicode Representations of Strings
-let dogString = "Dog!!🐶"
+let dogString = "Dog‼🐶"
 var image = UIImage(named: "String.utf8")
 for codeUnit in dogString.utf8 {
     print("\(codeUnit) ", terminator: "")

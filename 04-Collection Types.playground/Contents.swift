@@ -22,6 +22,11 @@ someInts.append(3)
 someInts = []
 // 创建一个带默认值的数组
 var threeDoubles = [Double](count: 3, repeatedValue: 0.0)
+for _ in 0...5 {
+    threeDoubles.append(0.2)
+}
+threeDoubles
+
 
 // 使用两个Array创建一个Array
 var anotherThreeDoubles = [Double](count: 3, repeatedValue: 2.5)
@@ -52,9 +57,12 @@ var firstItem = shoppingList[0]
 // 修改
 shoppingList[0] = "Six eggs"
 shoppingList
+shoppingList.count
 
-// 使用区间更新元素 区间不能越界 如果元素少于区间数量，将会删除多余得空间. 如果多余数组将会增大，但是不能用于在数组末尾添加元素
+// 使用区间更新元素 区间不能越界 如果元素少于区间数量，将会删除多余得空间. 如果多于区间数量 数组将会增大，但是不能用于在数组末尾添加元素
 shoppingList[4...6] = ["Bananas", "Apples"]
+shoppingList.count
+
 
 shoppingList
 
@@ -64,6 +72,7 @@ shoppingList.insert("Maple Syrup", atIndex: 0)
 // 删除
 let mapleSyrup = shoppingList.removeAtIndex(0)
 let apples = shoppingList.removeLast()
+shoppingList.removeFirst()
 
 // 数组迭代
 for item in shoppingList {
@@ -78,7 +87,7 @@ for (index, value) in shoppingList.enumerate() {
 // 创建一个空Set
 var letters = Set<Character>() // 与Array不同 Set没有简写的方式
 letters.insert("a")
-letters = [] // 存储类型已知 可以使用空数组创建一个Set
+letters = [] // 存储类型及本身类型已知 可以使用空数组创建一个Set
 
 // 使用数组字面量创建Set Swift不能通过数组的字面量推断出Set类型，所以下面得Set声明不能省略，但是如果值是同一种类型，可以省略值类型
 var favoriteGenres: Set<String> = ["Rock", "Classical", "Hip hop"]
@@ -134,7 +143,7 @@ oddDigits.exclusiveOr(singleDigitPrimeNumbers).sort()
 //使用isSubsetOf(_:)方法来判断一个集合中的值是否也被包含在另外一个集合中。
 //使用isSupersetOf(_:)方法来判断一个集合中包含的值是另一个集合中所有的值。
 //使用isStrictSubsetOf(_:)或者isStrictSupersetOf(_:)方法来判断一个集合是否是另外一个集合的子集合或者父集合,并且和特定集合不相等。
-//使用isDisjointWith(_:)方法来判断两个结合是否不含有相同的值。
+//使用isDisjointWith(_:)方法来判断两个集合是否不含有相同的值。
 
 image = UIImage(named: "setEulerDiagram")
 
@@ -168,6 +177,7 @@ if airports.isEmpty {
 }
 
 // 添加、修改
+airports["YYZ"]
 airports["LHR"] = "London"
 airports["LHR"] = "London Heathrow"
 
